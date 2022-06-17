@@ -21,6 +21,7 @@ class NewHero extends React.Component {
   componentDidUpdate() {
     console.log('5. COMPONENTDIDUPDATE');
   }
+  componentWillUnmount() {}
   render() {
     console.log('2/4. RENDER');
     return (
