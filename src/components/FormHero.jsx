@@ -12,7 +12,13 @@ class FormHero extends React.Component {
                 Nombre Heroe
               </label>
               <div className="col sm-9">
-                <input type="text" className="form-control" name="heroName" />
+                <input
+                  type="text"
+                  className="form-control"
+                  name="heroName"
+                  value={this.props.hero.heroName}
+                  onChange={this.props.onChangeState}
+                />
               </div>
             </div>
             <div className="form-group">
@@ -20,7 +26,13 @@ class FormHero extends React.Component {
                 Nombre Real
               </label>
               <div className="col sm-9">
-                <input type="text" className="form-control" name="realName" />
+                <input
+                  type="text"
+                  className="form-control"
+                  name="realName"
+                  value={this.props.hero.realName}
+                  onChange={this.props.onChangeState}
+                />
               </div>
             </div>
             <div className="form-group">
@@ -28,7 +40,13 @@ class FormHero extends React.Component {
                 Imagen
               </label>
               <div className="col sm-9">
-                <input type="text" className="form-control" name="photoUrl" />
+                <input
+                  type="text"
+                  className="form-control"
+                  name="imageUrl"
+                  value={this.props.hero.imageUrl}
+                  onChange={this.props.onChangeState}
+                />
               </div>
             </div>
             <div className="form-group">
@@ -36,13 +54,22 @@ class FormHero extends React.Component {
                 Reseña
               </label>
               <div className="col sm-9">
-                <textarea className="form-control" name="description" />
+                <textarea
+                  className="form-control"
+                  name="description"
+                  value={this.props.hero.description}
+                  onChange={this.props.onChangeState}
+                />
               </div>
             </div>
             <br />
             <div className="form-group">
               <div className="col sm-12 text-left">
-                <button type="button" className="btn btn-lg btn-primary mr-1">
+                <button
+                  type="button"
+                  className="btn btn-lg btn-primary mr-1"
+                  onClick={this.props.onClickSaveHero}
+                >
                   Guardar
                 </button>
               </div>
