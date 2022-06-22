@@ -4,27 +4,47 @@ import FormHero from '../components/FormHero';
 import PreviewHero from '../components/PreviewHero';
 
 class NewHero extends React.Component {
-  state = {
-    counter: 0,
-  };
-
-  handleClickIncrease = () => {
-    this.setState({
-      counter: this.state.counter + 1,
-    });
-  };
-
+  constructor() {
+    super();
+    this.state = {
+      heroName: 'CAPTIAN AMERICA',
+      realName: 'STEVE ROGERS',
+      description: 'DESCPRIPTION',
+      photoUrl:
+        'https://upload.wikimedia.org/wikipedia/en/9/91/CaptainAmerica109.jpg',
+    };
+    console.log('1. CONSTRUCTOR');
+  }
+  componentDidMount() {
+    console.log('3. COMPONENTDIDMOUNT');
+  }
+  componentDidUpdate() {
+    console.log('5. COMPONENTDIDUPDATE');
+  }
+  componentWillUnmount() {}
   render() {
+    console.log('2/4. RENDER');
     return (
       <React.Fragment>
-        <FormHero
-          counter={this.state.counter}
-          handleClickIncrease={this.handleClickIncrease}
+        <FormHero hero={this.state} onChangeState={this.handleChangeState} />
+        <PreviewHero
+          heroName={this.state.heroName}
+          realName={this.state.realName}
+          imageUrl={this.state.imageUrl}
+          description={this.state.description}
         />
-        <PreviewHero counter={this.state.counter} />
       </React.Fragment>
     );
   }
+  handleClickSaveHero = (e) => {
+    console.log('Funcion ejecutada desde New Hero.');
+  };
+
+  handleChangeState = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  };
 }
 
 export default NewHero;

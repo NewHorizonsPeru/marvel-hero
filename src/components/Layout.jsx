@@ -3,8 +3,6 @@ import React from 'react';
 import Navbar from '../components/Navbar';
 import Banner from '../components/Banner';
 
-import NewHero from '../pages/NewHero';
-
 class Layout extends React.Component {
   render() {
     return (
@@ -12,10 +10,7 @@ class Layout extends React.Component {
         <Navbar />
         <Banner />
         <div className="container">
-          <div className="row">
-            {/** CONTENIDO DINAMICO **/}
-            <NewHero />
-          </div>
+          <div className="row">{this.props.children}</div>
         </div>
       </React.Fragment>
     );

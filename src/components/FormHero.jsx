@@ -9,14 +9,56 @@ class FormHero extends React.Component {
           <div className="panel panel-body form-horizontal payment-form">
             <div className="form-group">
               <label htmlFor="heroName" className="col-sm-3 control-label">
-                Contador
+                Nombre Heroe
               </label>
               <div className="col sm-9">
                 <input
                   type="text"
                   className="form-control"
-                  name="txtNumberIncrease"
-                  value={this.props.counter}
+                  name="heroName"
+                  value={this.props.hero.heroName}
+                  onChange={this.props.onChangeState}
+                />
+              </div>
+            </div>
+            <div className="form-group">
+              <label htmlFor="realName" className="col-sm-3 control-label">
+                Nombre Real
+              </label>
+              <div className="col sm-9">
+                <input
+                  type="text"
+                  className="form-control"
+                  name="realName"
+                  value={this.props.hero.realName}
+                  onChange={this.props.onChangeState}
+                />
+              </div>
+            </div>
+            <div className="form-group">
+              <label htmlFor="photoUrl" className="col-sm-3 control-label">
+                Imagen
+              </label>
+              <div className="col sm-9">
+                <input
+                  type="text"
+                  className="form-control"
+                  name="imageUrl"
+                  value={this.props.hero.imageUrl}
+                  onChange={this.props.onChangeState}
+                />
+              </div>
+            </div>
+            <div className="form-group">
+              <label htmlFor="description" className="col-sm-3 control-label">
+                Reseña
+              </label>
+              <div className="col sm-9">
+                <textarea
+                  className="form-control"
+                  name="description"
+                  value={this.props.hero.description}
+                  onChange={this.props.onChangeState}
                 />
               </div>
             </div>
@@ -25,10 +67,10 @@ class FormHero extends React.Component {
               <div className="col sm-12 text-left">
                 <button
                   type="button"
-                  className="btn btn-lg btn-success mr-1"
-                  onClick={this.props.handleClickIncrease}
+                  className="btn btn-lg btn-primary mr-1"
+                  onClick={this.props.onClickSaveHero}
                 >
-                  Incrementar
+                  Guardar
                 </button>
               </div>
             </div>
