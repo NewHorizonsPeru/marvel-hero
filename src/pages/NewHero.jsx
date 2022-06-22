@@ -1,49 +1,81 @@
 import React from 'react';
-
 import FormHero from '../components/FormHero';
 import PreviewHero from '../components/PreviewHero';
+import MarvelService from '../core/services/MarvelService';
 
 class NewHero extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      heroName: 'CAPTIAN AMERICA',
-      realName: 'STEVE ROGERS',
-      description: 'DESCPRIPTION',
-      photoUrl:
-        'https://upload.wikimedia.org/wikipedia/en/9/91/CaptainAmerica109.jpg',
+      loading: false,
+      modalIsOpen: false,
+      error: undefined,
+      form: {
+        heroName: '',
+        realName: '',
+        photoUrl: '',
+        description: '',
+      },
     };
-    console.log('1. CONSTRUCTOR');
   }
-  componentDidMount() {
-    console.log('3. COMPONENTDIDMOUNT');
-  }
-  componentDidUpdate() {
-    console.log('5. COMPONENTDIDUPDATE');
-  }
-  componentWillUnmount() {}
   render() {
-    console.log('2/4. RENDER');
     return (
-      <React.Fragment>
-        <FormHero hero={this.state} onChangeState={this.handleChangeState} />
-        <PreviewHero
-          heroName={this.state.heroName}
-          realName={this.state.realName}
-          imageUrl={this.state.imageUrl}
-          description={this.state.description}
-        />
-      </React.Fragment>
+      <div className="container">
+        <br />
+        <div className="row">
+          <FormHero
+            formValues={this.state.form}
+            onChangeInput={this.handleChange}
+            onSaveHero={this.handleClickCreate}
+            modalIsOpen={this.state.modalIsOpen}
+            onCloseModal={this.handleCloseModal}
+            onPostSaveHero={this.handleRedirectToHeroes}
+            onGoBack={this.handleGoBack}
+          />
+          <PreviewHero
+            heroName={this.state.form.heroName || 'HERO NAME'}
+            realName={this.state.form.realName || 'REAL NAME'}
+            photoUrl={
+              this.state.form.photoUrl ||
+              'https://i.pinimg.com/originals/b5/34/df/b534df05c4b06ebd32159b2f9325d83f.jpg'
+            }
+            description={
+              this.state.form.description ||
+              'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...'
+            }
+          />
+        </div>
+      </div>
     );
   }
-  handleClickSaveHero = (e) => {
-    console.log('Funcion ejecutada desde New Hero.');
+
+  handleChange = (e) => {
+    this.setState({
+      form: {
+        ...this.state.form,
+        [e.target.name]: e.target.value,
+      },
+    });
   };
 
-  handleChangeState = (e) => {
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
+  handleClickCreate = async () => {
+    try {
+      const hero = this.state.form;
+      const resultCreate = await MarvelService.heroes.create(hero);
+      if (resultCreate) {
+        this.setState({ modalIsOpen: true });
+      }
+    } catch (error) {
+      this.setState({ error: error.message });
+    }
+  };
+
+  handleRedirectToHeroes = () => {
+    this.props.history.push('/');
+  };
+
+  handleGoBack = () => {
+    this.props.history.goBack();
   };
 }
 

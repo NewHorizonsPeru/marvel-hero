@@ -3,8 +3,8 @@ import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import Heroes from './pages/Heroes';
 import Layout from './components/Layout';
 import NewHero from './pages/NewHero';
-import Hero from './pages/Hero';
 import NotFound from './pages/NotFound';
+import EditHero from './pages/EditHero';
 class App extends Component {
   render() {
     return (
@@ -16,7 +16,7 @@ class App extends Component {
               <Redirect from="/heroes" to="/" />
             </Route>
             <Route exact path="/newHero" component={NewHero} />
-            <Route exact path="/detailHero" component={Hero} />
+            <Route exact path="/editHero/:heroId" component={EditHero} />
             <Route component={NotFound} />
           </Switch>
         </Layout>

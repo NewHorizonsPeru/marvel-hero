@@ -1,47 +1,58 @@
 import React from 'react';
+import ButtonNewHero from '../components/ButtonNewHero';
 import HeroContainer from '../components/HeroContainer';
-import { dataHeroes } from '../data/dataHeroes';
+import PageMessage from '../components/PageMessage';
+import MarvelService from '../core/services/MarvelService';
+import LoaderHeroes from '../components/LoaderHeroes';
 class Heroes extends React.Component {
   constructor() {
     super();
     this.state = {
+      loading: true,
       heroes: undefined,
+      error: undefined,
     };
   }
 
   componentDidMount() {
-    setTimeout(() => {
-      this.getDataHeroes();
-    }, 5000);
+    this.getDataHeroes();
   }
 
-  getDataHeroes = () => {
-    this.setState({
-      heroes: dataHeroes,
-    });
+  getDataHeroes = async () => {
+    try {
+      const heroes = await MarvelService.heroes.getAll();
+      this.setState({
+        heroes: heroes,
+        loading: false,
+      });
+    } catch (error) {
+      this.setState({
+        loading: false,
+        error: error,
+      });
+    }
   };
 
   render() {
-    return (
-      <>
-        <div className="container">
-          <br />
-          <div className="row">
-            <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-              <button className="btn btn-success btn-lg float-right ml-auto">
-                Nuevo
-              </button>
-            </div>
-          </div>
-          <br />
-        </div>
-        {this.state.heroes ? (
-          <HeroContainer heroes={this.state.heroes} />
-        ) : (
-          <h3 align="center">⏳ Cargando...</h3>
-        )}
-      </>
-    );
+    if (this.state.loading) {
+      return <LoaderHeroes />;
+    }
+    if (this.state.error) {
+      return <PageMessage message={this.state.error.message} />;
+    }
+    if (this.state.heroes) {
+      if (this.state.heroes.length > 0) {
+        return (
+          <>
+            <ButtonNewHero />
+            <br />
+            <HeroContainer heroes={this.state.heroes} />
+          </>
+        );
+      } else {
+        return <PageMessage message="No existen registros. 😔" />;
+      }
+    }
   }
 }
 

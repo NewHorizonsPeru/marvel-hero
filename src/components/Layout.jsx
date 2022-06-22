@@ -1,7 +1,6 @@
 import React from 'react';
-
-import Navbar from '../components/Navbar';
-import Banner from '../components/Banner';
+import Navbar from './Navbar';
+import Banner from './Banner';
 
 class Layout extends React.Component {
   render() {
@@ -9,9 +8,7 @@ class Layout extends React.Component {
       <React.Fragment>
         <Navbar />
         <Banner />
-        <div className="container">
-          <div className="row">{this.props.children}</div>
-        </div>
+        {this.props.children}
       </React.Fragment>
     );
   }

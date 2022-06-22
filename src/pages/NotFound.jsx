@@ -1,15 +1,9 @@
 import React from 'react';
+import PageMessage from '../components/PageMessage';
 
 class NotFound extends React.Component {
   render() {
-    return (
-      <div className="container">
-        <br />
-        <div className="row">
-          <h3>Pagina no encontrada 😔</h3>
-        </div>
-      </div>
-    );
+    return <PageMessage message="Pagina no encontrada 😢" />;
   }
 }
 

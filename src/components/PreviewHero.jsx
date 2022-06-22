@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import '../styles/Hero.css';
 
 class PreviewHero extends React.Component {
@@ -21,7 +20,7 @@ class PreviewHero extends React.Component {
               className="bd-placeholder-img"
               width="200"
               height="250"
-              src={this.props.imageUrl}
+              src={this.props.photoUrl}
               alt="photoUrl"
             />
           </div>
@@ -34,16 +33,16 @@ class PreviewHero extends React.Component {
 PreviewHero.propTypes = {
   heroName: PropTypes.string,
   realName: PropTypes.string,
-  imageUrl: PropTypes.string,
+  photoUrl: PropTypes.string,
   description: PropTypes.string,
 };
 
 PreviewHero.defaultProps = {
-  heroName: 'Capitan America',
-  realName: 'Steve Rogers',
-  imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/91ODZU+Qz-L.jpg',
-  description:
-    'Es un superhéroe ficticio que aparece en los cómics estadounidenses publicados por Marvel Comics. Creado por los historietistas Joe Simon y Jack Kirby, el personaje apareció por primera vez en Captain America Comics #1 (marzo de 1941) de Timely Comics, predecesor de Marvel Comics. ',
+  heroName: 'HERO NAME',
+  realName: 'REAL NAME',
+  photoUrl:
+    'https://i.pinimg.com/originals/b5/34/df/b534df05c4b06ebd32159b2f9325d83f.jpg',
+  description: 'DESCRIPTION',
 };
 
 export default PreviewHero;
