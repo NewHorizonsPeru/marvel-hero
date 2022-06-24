@@ -6,13 +6,15 @@ import NewHero from './pages/NewHero';
 import NotFound from './pages/NotFound';
 import EditHero from './pages/EditHero';
 import DetailHeroe from './pages/DetailHeroe';
+import Counter from './react-hooks/useState/counter';
+import WithoutDep from './react-hooks/useEffect/WithoutDep';
 class App extends Component {
   render() {
     return (
       <BrowserRouter>
         <Layout>
           <Switch>
-            <Route exact path="/" component={Heroes} />
+            <Route exact path="/" component={WithoutDep} />
             <Route exact path="/heroes">
               <Redirect from="/heroes" to="/" />
             </Route>
