@@ -1,13 +1,6 @@
 {
   "heroe": [
     {
-      "id": "2312317",
-      "heroName": "Captian America",
-      "realName": "Steve Rogers",
-      "description": "Steve Rogers Steve RogersSteve RogersSteve RogersSteve RogersSteve RogersSteve RogersSteve RogersSteve RogersSteve RogersSteve Rogers",
-      "photoUrl": "https://www.zonanegativa.com/imagenes/2020/08/scapi908_0.jpg"
-    },
-    {
       "id": "478433646",
       "heroName": "Iron Man",
       "realName": "Tony Stark",

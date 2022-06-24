@@ -5,6 +5,7 @@ import Layout from './components/Layout';
 import NewHero from './pages/NewHero';
 import NotFound from './pages/NotFound';
 import EditHero from './pages/EditHero';
+import DetailHeroe from './pages/DetailHeroe';
 class App extends Component {
   render() {
     return (
@@ -17,6 +18,7 @@ class App extends Component {
             </Route>
             <Route exact path="/newHero" component={NewHero} />
             <Route exact path="/editHero/:heroId" component={EditHero} />
+            <Route exact path="/detailhero/:heroId" component={DetailHeroe} />
             <Route component={NotFound} />
           </Switch>
         </Layout>

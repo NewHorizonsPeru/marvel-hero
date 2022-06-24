@@ -20,6 +20,13 @@ class HeroElement extends Component {
           >
             Editar
           </Link>
+          <br />
+          <Link
+            to={`/detailHero/${this.props.hero.id}`}
+            className="btn btn-success mr-1"
+          >
+            Ver más
+          </Link>
         </div>
         <div className="col-auto d-none d-lg-block hero-img">
           <img
