@@ -1,59 +1,55 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ButtonNewHero from '../components/ButtonNewHero';
 import HeroContainer from '../components/HeroContainer';
 import PageMessage from '../components/PageMessage';
 import MarvelService from '../core/services/MarvelService';
 import LoaderHeroes from '../components/LoaderHeroes';
-class Heroes extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      loading: true,
-      heroes: undefined,
-      error: undefined,
-    };
-  }
 
-  componentDidMount() {
-    this.getDataHeroes();
-  }
+const Heroes = () => {
+  const [heroes, setHeroes] = useState({
+    loading: true,
+    heroes: undefined,
+    error: undefined,
+  });
 
-  getDataHeroes = async () => {
+  const getDataHeroes = async () => {
     try {
       const heroes = await MarvelService.heroes.getAll();
-      this.setState({
+      setHeroes({
         heroes: heroes,
         loading: false,
       });
     } catch (error) {
-      this.setState({
+      setHeroes({
         loading: false,
         error: error,
       });
     }
   };
 
-  render() {
-    if (this.state.loading) {
-      return <LoaderHeroes />;
-    }
-    if (this.state.error) {
-      return <PageMessage message={this.state.error.message} />;
-    }
-    if (this.state.heroes) {
-      if (this.state.heroes.length > 0) {
-        return (
-          <>
-            <ButtonNewHero />
-            <br />
-            <HeroContainer heroes={this.state.heroes} />
-          </>
-        );
-      } else {
-        return <PageMessage message="No existen registros. 😔" />;
-      }
+  useEffect(() => {
+    getDataHeroes();
+  }, []);
+
+  if (heroes.loading) {
+    return <LoaderHeroes />;
+  }
+  if (heroes.error) {
+    return <PageMessage message={heroes.error.message} />;
+  }
+  if (heroes.heroes) {
+    if (heroes.heroes.length > 0) {
+      return (
+        <>
+          <ButtonNewHero />
+          <br />
+          <HeroContainer heroes={heroes.heroes} />
+        </>
+      );
+    } else {
+      return <PageMessage message="No existen registros. 😔" />;
     }
   }
-}
+};
 
 export default Heroes;
