@@ -2,13 +2,11 @@ import React from 'react';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import '../styles/Hero.css';
-import ButtonNewHero from './ButtonNewHero';
 
 class LoaderHeroes extends React.Component {
   render() {
     return (
       <>
-        <ButtonNewHero />
         <br />
         <div className="container">
           <div className="row mb-2">

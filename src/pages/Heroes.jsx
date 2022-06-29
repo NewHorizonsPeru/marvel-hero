@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import ButtonNewHero from '../components/ButtonNewHero';
 import HeroContainer from '../components/HeroContainer';
 import PageMessage from '../components/PageMessage';
 import MarvelService from '../core/services/MarvelService';
@@ -41,8 +40,6 @@ const Heroes = () => {
     if (heroes.heroes.length > 0) {
       return (
         <>
-          <ButtonNewHero />
-          <br />
           <HeroContainer heroes={heroes.heroes} />
         </>
       );
