@@ -1,4 +1,10 @@
-.heroe-img {
+.hero-img {
   padding-right: 0 !important;
   padding-left: 0 !important;
+}
+.mr-10{
+  margin-right: 10px;
+}
+.content-desc{
+  height: 100px;
 }

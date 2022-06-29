@@ -11,22 +11,23 @@ class HeroElement extends Component {
             {this.props.hero.heroName}
           </strong>
           <h3 className="mb-0">{this.props.hero.realName}</h3>
-          <div className="mb-1 text-muted">
+          <div className="mb-1 text-muted content-desc">
             {this.props.hero.description.slice(0, 120)}...
           </div>
-          <Link
-            to={`/edithero/${this.props.hero.id}`}
-            className="btn btn-primary"
-          >
-            Editar
-          </Link>
-          <br />
-          <Link
-            to={`/detailHero/${this.props.hero.id}`}
-            className="btn btn-success mr-1"
-          >
-            Ver más
-          </Link>
+          <div>
+            <Link
+              to={`/edithero/${this.props.hero.id}`}
+              className="mr-10 btn btn-primary"
+            >
+              Editar
+            </Link>
+            <Link
+              to={`/detailHero/${this.props.hero.id}`}
+              className="btn btn-success mr-1"
+            >
+              Ver más
+            </Link>
+          </div>
         </div>
         <div className="col-auto d-none d-lg-block hero-img">
           <img

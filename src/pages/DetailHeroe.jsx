@@ -83,26 +83,25 @@ export default class DetailHeroe extends Component {
                 {heroe.heroName}
               </strong>
               <h3 className="mb-0">{heroe.realName}</h3>
-              <div className="mb-1 text-muted">{heroe.description}</div>
+              <div className="mb-1 text-muted content-desc">
+                {heroe.description}
+              </div>
               <div>
-                <br />
-                <br />
-                <br />
                 <Link
                   to={`/editHero/${heroe.id}`}
-                  className="btn btn-warning mr-1"
+                  className="btn btn-warning mr-10"
                 >
                   Editar
                 </Link>
                 <button
-                  className="btn btn-danger mr-1"
+                  className="btn btn-danger mr-10"
                   onClick={this.onOpenModal}
                 >
                   Eliminar
                 </button>
                 <button
                   type="button"
-                  className="btn btn-default mr-1"
+                  className="btn btn-default mr-10"
                   onClick={this.handleGoBack}
                 >
                   Atras
