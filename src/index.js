@@ -3,67 +3,72 @@ import ReactDOM from 'react-dom/client';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { createStore } from 'redux';
 
-/** REDUCER **/
-const counterReducer = (state = 0, action) => {
+const taskReducer = (state = [], action) => {
   switch (action.type) {
-    case '@INCREASE':
-      state = state + 1;
-      break;
-    case '@DECREASE':
-      state = state - 1;
-      break;
-    case '@RESET':
-      state = 0;
-      break;
+    case '@TASKS/ADD':
+      return [...state, action.payload];
     default:
-      break;
+      return state;
   }
-  return state;
 };
 
-/** STORE O ESTADO **/
-const counterStore = createStore(counterReducer);
-
-/** ACCIONES **/
-const actionIncrease = {
-  type: '@INCREASE',
-};
-
-const actionDecrease = {
-  type: '@DECREASE',
-};
-
-const actionReset = {
-  type: '@RESET',
-};
+const tasksStore = createStore(taskReducer);
 
 const App = () => {
+  const state = tasksStore.getState();
+  const addTask = (e) => {
+    e.preventDefault();
+    const { target } = e;
+    const name = target.task.value;
+    target.task.value = '';
+    tasksStore.dispatch({
+      type: '@TASKS/ADD',
+      payload: {
+        id: Math.floor(Math.random() * 9000000) + 1000000,
+        name: name,
+        isDone: false,
+      },
+    });
+  };
+  const toggleIsDone = () => {};
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-md-6">
-          <h1>{counterStore.getState()}</h1>
-          <button
-            className="btn btn-primary"
-            onClick={() => counterStore.dispatch(actionIncrease)}
-          >
-            Aumentar
-          </button>
-          <button
-            className="btn btn-warning"
-            onClick={() => counterStore.dispatch(actionDecrease)}
-          >
-            Disminuir
-          </button>
-          <button
-            className="btn btn-danger"
-            onClick={() => counterStore.dispatch(actionReset)}
-          >
-            Resetear
-          </button>
-        </div>
+    <main className="container">
+      <div className="p-4">
+        <br />
+        <form onSubmit={addTask}>
+          <div className="input-group mb-3">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Ingrese una tarea"
+              name="task"
+            />
+            <button type="submit" className="btn btn-primary">
+              Agregar
+            </button>
+          </div>
+        </form>
+        <ul className="list-group">
+          {state.map((task) => {
+            return (
+              <li
+                key={task.id}
+                className="list-group-item d-flex justify-content-between align-items-center"
+              >
+                {task.name}
+
+                <span
+                  className={`badge bg-${task.isDone ? 'success' : 'warning'}`}
+                  onClick={() => toggleIsDone(task.id)}
+                >
+                  {task.isDone ? 'Terminada' : 'Pendiente'}
+                </span>
+              </li>
+            );
+          })}
+        </ul>
       </div>
-    </div>
+    </main>
   );
 };
 
@@ -74,6 +79,6 @@ const rootRender = () => {
 
 rootRender();
 
-counterStore.subscribe(() => {
+tasksStore.subscribe(() => {
   rootRender();
 });
