@@ -1,9 +1,11 @@
 import { createStore } from 'redux';
 import TaskReducer from '../reducers/TaskReducer';
 
-const TasksStore = createStore(
-  TaskReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+const TasksStore = createStore(TaskReducer, {
+  tasks: [],
+  loading: false,
+  isAuthenticated: false,
+  userInfo: {},
+});
 
 export default TasksStore;
