@@ -2,17 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { createStore } from 'redux';
+import TaskReducer from './reducers/TaskReducer';
+import { addTaskAction, toggleIsDoneAction } from './actions/TaskAction';
 
-const taskReducer = (state = [], action) => {
-  switch (action.type) {
-    case '@TASKS/ADD':
-      return [...state, action.payload];
-    default:
-      return state;
-  }
-};
-
-const tasksStore = createStore(taskReducer);
+const tasksStore = createStore(TaskReducer);
 
 const App = () => {
   const state = tasksStore.getState();
@@ -21,16 +14,11 @@ const App = () => {
     const { target } = e;
     const name = target.task.value;
     target.task.value = '';
-    tasksStore.dispatch({
-      type: '@TASKS/ADD',
-      payload: {
-        id: Math.floor(Math.random() * 9000000) + 1000000,
-        name: name,
-        isDone: false,
-      },
-    });
+    tasksStore.dispatch(addTaskAction(name));
   };
-  const toggleIsDone = () => {};
+  const toggleIsDone = (id) => {
+    tasksStore.dispatch(toggleIsDoneAction(id));
+  };
   return (
     <main className="container">
       <div className="p-4">
