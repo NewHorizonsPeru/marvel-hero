@@ -1,0 +1,12 @@
+REDUX		     |      REACT-REDUX
+--------------------------------------------------                     	
+STORE, REDUCER 	     |  STORE, REDUCER 
+Y ACTIONS	     |	Y ACTIONS	     
+
+DISPATCH 	     |  USEDISPATCH (HOOK)
+
+GETSTATE()           |  USESTORE() & USESELECTOR()
+
+SUBSCRIBE(HTML)      |  <PROVIDER store={}>
+		     |      HTML
+		     |	</PROVIDER>		
